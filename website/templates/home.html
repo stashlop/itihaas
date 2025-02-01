@@ -278,6 +278,29 @@
               max-width: 800px;
               margin: 0 auto;
           }
+          .banner .slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform-style: preserve-3d;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.banner .slider .item:hover {
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(600px) scale(1.1);
+    z-index: 10;
+}
+
+/* Click Effect */
+.banner .slider .item.clicked {
+    transform: scale(1.2) translateZ(650px);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+          
       </style>
   </head>
   <body>
@@ -319,6 +342,25 @@
 
 <!-- JavaScript for Audio Toggle -->
 <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll(".banner .slider .item");
+
+    cards.forEach(card => {
+        card.addEventListener("click", function() {
+            // Add clicked effect
+            this.classList.add("clicked");
+
+            // Get the page URL from the data attribute
+            let targetUrl = this.getAttribute("data-url");
+
+            // Wait for the animation to complete, then navigate
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);
+        });
+    });
+});
+
   function toggleAudio() {
     let audio = document.getElementById('bg-audio');
     let icon = document.getElementById('audio-icon');
