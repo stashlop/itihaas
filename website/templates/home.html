@@ -23,7 +23,7 @@
   .content-overlay {
     position: relative;
     z-index: 1;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -91,9 +91,231 @@
 <!-- Historic Sites Section -->
 <div id="historic-sites" style="padding: 100px 20px; background-color: #f8f9fa;">
   <!-- Content of the Historic Sites section -->
-  <h2>Historic Sites</h2>
-  <p>Details about various historic sites...</p>
-</div>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Itihasa - Monumental Journeys</title>
+      <style>
+          *{
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+          }
+          body{
+              background-color: #D2D2D2;
+              background-image:
+              repeating-linear-gradient(
+                  to right, transparent 0 100px,
+                  #25283b22 100px 101px
+              ),
+              repeating-linear-gradient(
+                  to bottom, transparent 0 100px,
+                  #25283b22 100px 101px
+              );
+          }
+  
+          body::before{
+              position: absolute;
+              width: min(1400px, 90vw);
+              top: 10%;
+              left: 50%;
+              height: 90%;
+              transform: translateX(-50%);
+              content: '';
+              background-image: url(bg.png);
+              background-size: 100%;
+              background-repeat: no-repeat;
+              background-position: top center;
+              pointer-events: none;
+          }
+  
+          .banner{
+              width: 100%;
+              height: 100vh;
+              text-align: center;
+              overflow: hidden;
+              position: relative;
+          }
+          .banner .slider{
+              position: absolute;
+              width: 200px;
+              height: 250px;
+              top: 10%;
+              left: calc(50% - 100px);
+              transform-style: preserve-3d;
+              transform: perspective(1000px);
+              animation: autoRun 20s linear infinite;
+              z-index: 2;
+          }
+          @keyframes autoRun{
+              from{
+                  transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+              }to{
+                  transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+              }
+          }
+  
+          .banner .slider .item{
+              position: absolute;
+              inset: 0 0 0 0;
+              transform: 
+                  rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                  translateZ(550px);
+          }
+          .banner .slider .item img{
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+          }
+          .banner .content{
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              width: min(1400px, 100vw);
+              height: max-content;
+              padding-bottom: 100px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              align-items: center;
+              z-index: 1;
+          }
+          .banner .content h1{
+              font-family: 'ICA Rubrik';
+              font-size: 16em;
+              line-height: 1em;
+              color: #25283B;
+              position: relative;
+          }
+          .banner .content h1::after{
+              position: absolute;
+              inset: 0 0 0 0;
+              content: attr(data-content);
+              z-index: 2;
+              -webkit-text-stroke: 2px #d2d2d2;
+              color: transparent;
+          }
+          .banner .content .author{
+              font-family: Poppins;
+              text-align: right;
+              max-width: 200px;
+          }
+          .banner .content h2{
+              font-size: 3em;
+          }
+          .model {
+  background-image: url('static/model.png'); /* Ensure correct path */
+  width: 100%;
+  height: 75vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2; /* Ensure it's on top */
+}
+
+          @media screen and (max-width: 1023px) {
+              .banner .slider{
+                  width: 160px;
+                  height: 200px;
+                  left: calc(50% - 80px);
+              }
+              .banner .slider .item{
+                  transform: 
+                      rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                      translateZ(300px);
+              }
+              .banner .content h1{
+                  text-align: center;
+                  width: 100%;
+                  text-shadow: 0 10px 20px #000;
+                  font-size: 7em;
+              }
+              .banner .content .author{
+                  color: #fff;
+                  padding: 20px;
+                  text-shadow: 0 10px 20px #000;
+                  z-index: 2;
+                  max-width: unset;
+                  width: 100%;
+                  text-align: center;
+                  padding: 0 30px;
+              }
+          }
+          @media screen and (max-width: 767px) {
+              .banner .slider{
+                  width: 100px;
+                  height: 150px;
+                  left: calc(50% - 50px);
+              }
+              .banner .slider .item{
+                  transform: 
+                      rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+                      translateZ(180px);
+              }
+              .banner .content h1{
+                  font-size: 5em;
+              }
+          }
+  
+          /* Historic Sites Section */
+          #historic-sites {
+              padding: 100px 20px;
+              background-color: #000000;
+              text-align: center;
+          }
+          #historic-sites h2 {
+              font-size: 2.5em;
+              margin-bottom: 20px;
+          }
+          #historic-sites p {
+              font-size: 1.2em;
+              max-width: 800px;
+              margin: 0 auto;
+          }
+      </style>
+  </head>
+  <body>
+  
+      <div class="banner">
+          <div class="slider" style="--quantity: 10">
+              <div class="item" style="--position: 1"><img src="static/m1.jpeg" alt=""></div>
+              <div class="item" style="--position: 2"><img src="static/m2.jpeg" alt=""></div>
+              <div class="item" style="--position: 3"><img src="static/m3.jpeg" alt=""></div>
+              <div class="item" style="--position: 4"><img src="static/m4.jpeg" alt=""></div>
+              <div class="item" style="--position: 5"><img src="static/m5.jpeg" alt=""></div>
+              <div class="item" style="--position: 6"><img src="static/m6.jpeg" alt=""></div>
+              <div class="item" style="--position: 7"><img src="static/m7.jpeg" alt=""></div>
+              <div class="item" style="--position: 8"><img src="images/dragon_8.jpg" alt=""></div>
+              <div class="item" style="--position: 9"><img src="images/dragon_9.jpg" alt=""></div>
+              <div class="item" style="--position: 10"><img src="images/dragon_10.jpg" alt=""></div>
+          </div>
+          <div class="content">
+              <h1 data-content="ITIHAAS">
+                  ITIHAAS
+              </h1>
+              
+              </div>
+              <div class="model"></div>
+          </div>
+      </div>
+  
+      <!-- Historic Sites Section -->
+      <div id="historic-sites">
+          <h2>Historic Sites</h2>
+          <p>Explore India's rich cultural heritage through its historic monuments. From ancient temples to grand palaces, these sites offer a glimpse into the country's glorious past.</p>
+          <h2>Details about various historic sites...</h2>
+          <p>More detailed information about specific historic sites can be added here.</p>
+      </div>
+  
+  </body>
+  </html>
+  
 
 <!-- JavaScript for Audio Toggle -->
 <script>
