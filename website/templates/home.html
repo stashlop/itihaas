@@ -341,17 +341,17 @@
   
 
 <!-- JavaScript for Audio Toggle -->
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".banner .slider .item");
 
     cards.forEach(card => {
-        card.addEventListener("click", function() {
+        card.addEventListener("click", function () {
             // Add clicked effect
             this.classList.add("clicked");
 
-            // Get the page URL from the data attribute
-            let targetUrl = this.getAttribute("data-url");
+            // Set the target URL correctly
+            let targetUrl = "/place"; // Ensure the path is correct
 
             // Wait for the animation to complete, then navigate
             setTimeout(() => {
@@ -360,6 +360,7 @@
         });
     });
 });
+
 
   function toggleAudio() {
     let audio = document.getElementById('bg-audio');
