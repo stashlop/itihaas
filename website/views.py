@@ -8,7 +8,9 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html", user=current_user)
 
-@views.route('/place')
+@views.route('/index')
 @login_required  # Ensure only authenticated users can access
 def place():
-    return render_template("place.html", user=current_user)  # Pass 'user' variable
+    return render_template("index.html", user=current_user)
+ # Pass 'user' variable
+
